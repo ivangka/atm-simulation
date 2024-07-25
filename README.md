@@ -3,7 +3,7 @@
 An ATM simulation project designed to emulate the core functionalities of a real-world automated teller machine (ATM). This project includes essential features such as account management, secure user authentication, and detailed transaction handling. It supports multiple users and accounts, allowing for a realistic simulation of banking operations. Users can perform various actions, including depositing and withdrawing money, checking account balances, and viewing transaction histories.
 
 
-### Features
+## Features
 
 - **Account Management:** Create and manage bank accounts.
 - **User Authentication:** Secure login system with unique user identification.
@@ -22,7 +22,7 @@ An ATM simulation project designed to emulate the core functionalities of a real
 - **`Transaction` class:** Represents a financial transaction, including the amount and type of transaction.
 - **`LoginAlreadyExistsException` class:** Custom exception to handle duplicate login attempts.
 
-### How to Run
+## How to Run
 
 1. Clone the repository:
     ```bash
