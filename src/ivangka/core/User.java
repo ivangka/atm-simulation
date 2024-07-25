@@ -2,8 +2,6 @@ package ivangka.core;
 
 import ivangka.exceptions.LoginAlreadyExistsException;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,15 +17,14 @@ public class User {
     private ArrayList<Transaction> transactions;
     private double totalBalance;
 
-    public User(String firstName, String lastName, Bank bank, String login, String pin)
-            throws LoginAlreadyExistsException {
+    public User(String firstName, String lastName, Bank bank, String login, String pin) {
 
         // checking if an account with the same login exists in the bank
-        for (User u : bank.getUsers()) {
-            if (u.getLogin().equals(login)) {
-                throw new LoginAlreadyExistsException(
-                        String.format("A user with the login \"%s\" already exists. Please choose another one.", login));
-            }
+        try {
+            bank.checkLoginExists(login);
+        } catch (LoginAlreadyExistsException e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
 
         // inits
@@ -39,15 +36,10 @@ public class User {
         this.transactions = new ArrayList<>();
         this.totalBalance = 0;
 
-        // set MD5 hash
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            this.pinHash = md.digest(pin.getBytes());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        // generate hash
+        this.pinHash = bank.generateHash(pin, "MD5");
 
+        // generate UUID for the user
         this.uuid = bank.generateNewUserUUID(this);
 
         bank.addUser(this);

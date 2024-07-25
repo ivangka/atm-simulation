@@ -1,7 +1,5 @@
 package ivangka.core;
 
-import ivangka.exceptions.LoginAlreadyExistsException;
-
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,16 +11,8 @@ public class ATM {
 
         sc.useLocale(Locale.US);
 
-        Bank bank = new Bank("Digital Native Bank");
-        User user = null;
-
-        try {
-            user = new User("John", "Smith", bank, "john-smith", "0000");
-        } catch (LoginAlreadyExistsException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
-
+        Bank bank = new Bank("Digital Native Bank", "MD5");
+        User user = new User("John", "Smith", bank, "john-smith", "0000");
         new Account("Saving account", user, bank);
 
         User authorizedUser;

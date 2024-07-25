@@ -1,5 +1,7 @@
 package ivangka.core;
 
+import ivangka.exceptions.LoginAlreadyExistsException;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -9,13 +11,15 @@ import java.util.UUID;
 public class Bank {
 
     final private String name;
+    private String algorithm;
     private ArrayList<User> users;
     private ArrayList<Account> accounts;
 
-    public Bank(String name) {
+    public Bank(String name, String algorithm) {
 
         // inits
         this.name = name;
+        this.algorithm = algorithm;
         this.users = new ArrayList<>();
         this.accounts = new ArrayList<>();
 
@@ -53,6 +57,18 @@ public class Bank {
         return id;
     }
 
+    public void checkLoginExists(String login) throws LoginAlreadyExistsException {
+
+        // throw the exception if a user with the login already exists bank
+        for (User u : users) {
+            if (u.getLogin().equals(login)) {
+                throw new LoginAlreadyExistsException(String.format("A user with the login \"%s\" already exists. " +
+                        "Please choose another one.", login));
+            }
+        }
+
+    }
+
     public User authorization(String login, String pin) {
 
         // search for a user with the login
@@ -65,15 +81,8 @@ public class Bank {
         }
         if (user == null) return null;
 
-        // set MD5 hash for the entered pin
-        byte[] pinHash = null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            pinHash = md.digest(pin.getBytes());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        // generate hash for the entered pin
+        byte[] pinHash = generateHash(pin, "MD5");
 
         // pin check
         if (MessageDigest.isEqual(user.getPinHash(), pinHash)) {
@@ -81,6 +90,20 @@ public class Bank {
         }
 
         return null;
+    }
+
+    public byte[] generateHash(String message, String algorithm) {
+
+        byte[] hash = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            hash = md.digest(message.getBytes());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        return hash;
     }
 
     public void addUser(User user) {
