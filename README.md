@@ -1,6 +1,6 @@
 # ATM Simulation
 
-An ATM simulation project designed to emulate the core functionalities of a real-world automated teller machine (ATM). This project includes essential features such as account management, secure user authentication, and detailed transaction handling. It supports multiple users and accounts, allowing for a realistic simulation of banking operations. Users can perform various actions, including depositing and withdrawing money, checking account balances, and viewing transaction histories
+An ATM simulation project designed to emulate the core functionalities of a real-world automated teller machine (ATM). This project includes essential features such as account management, secure user authentication, and detailed transaction handling. It supports multiple users and accounts, allowing for a realistic simulation of banking operations. Users can perform various actions, including depositing and withdrawing money, checking account balances, and viewing transaction histories.
 
 
 ## Features
