@@ -22,17 +22,14 @@ An ATM simulation project designed to emulate the core functionalities of a real
 - **`Transaction` class:** Represents a financial transaction, including the amount and type of transaction.
 - **`LoginAlreadyExistsException` class:** Custom exception to handle duplicate login attempts.
 
-## How to Run
+## Installation
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/ivangka/atm-simulation
-    ```
-2. Compile the Java files:
-    ```bash
-    javac -d bin src/ivangka/core/*.java src/ivangka/exceptions/*.java
-    ```
-3. Run the application:
-    ```bash
-    java -cp bin ivangka.core.ATM
-    ```
+To use this project, you need to have Java Development Kit (JDK) installed. You can compile and run the program using the following commands:
+
+```bash
+# Compile the program
+javac -d bin src/ivangka/core/*.java src/ivangka/exceptions/*.java
+
+# Run the program
+java -cp bin ivangka.core.ATM
+```
