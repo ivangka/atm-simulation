@@ -48,6 +48,10 @@ public class User {
 
     }
 
+    public Account createNewAccount(String name) {
+        return new Account(name, this, bank);
+    }
+
     public void addAccount(Account account) {
         this.accounts.add(account);
     }

@@ -12,8 +12,8 @@ public class ATM {
         sc.useLocale(Locale.US);
 
         Bank bank = new Bank("Digital Native Bank", "MD5");
-        User user = new User("John", "Smith", bank, "john-smith", "0000");
-        new Account("Saving account", user, bank);
+        User user = bank.createNewUser("John", "Smith", "john-smith", "0000");
+        user.createNewAccount("Saving account");
 
         User authorizedUser;
         while (true) {

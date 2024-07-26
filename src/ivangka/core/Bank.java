@@ -25,6 +25,10 @@ public class Bank {
 
     }
 
+    public User createNewUser(String firstName, String lastName, String login, String pin) {
+        return new User(firstName, lastName, this, login, pin);
+    }
+
     public String generateNewUserUUID(User user) {
 
         // generate unique UUID
