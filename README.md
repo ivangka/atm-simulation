@@ -24,7 +24,8 @@ An ATM simulation project designed to emulate the core functionalities of a real
 
 ## Installation
 
-To use this project, you need to have Java Development Kit (JDK) installed. You can compile and run the program using the following commands:
+> [!NOTE]
+> To use this project, you need to have Java Development Kit (JDK) installed. You can compile and run the program using the following commands:
 
 ```bash
 # Compile the program
