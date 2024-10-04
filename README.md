@@ -32,3 +32,6 @@ javac -d bin src/ivangka/core/*.java src/ivangka/exceptions/*.java
 # Run the program
 java -cp bin ivangka.core.ATM
 ```
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
