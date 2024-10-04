@@ -6,7 +6,7 @@ An ATM simulation project designed to emulate the core functionalities of a real
 
 - **Account Management:** Create and manage bank accounts.
 - **User Authentication:** Secure login system with unique user identification.
-- **Multi-account Support:** Manage multiple accounts for a single user, allowing flexible control over different financial assets.
+- **Multi-account Support:** Manage multiple accounts for a single user.
 - **Transaction Handling:** Track and manage transactions.
 - **Deposit and Withdrawal:** Perform deposit and withdrawal operations.
 - **Balance Inquiry:** Check account balances.

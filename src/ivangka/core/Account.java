@@ -10,7 +10,7 @@ public class Account {
 
     public Account(String name, User holder, Bank bank) {
 
-        //inits
+        // inits
         this.name = name;
         this.holder = holder;
         this.bank = bank;
