@@ -1,16 +1,6 @@
 # ATM Simulation
 
-An ATM simulation project designed to emulate the core functionalities of a real-world automated teller machine (ATM). This project includes essential features such as account management, user authentication, and transaction handling. Users can perform various actions, including depositing and withdrawing money, checking account balances, and viewing transaction histories.
-
-## Features
-
-- **Account Management:** Create and manage bank accounts.
-- **User Authentication:** Secure login system with unique user identification.
-- **Multi-account Support:** Manage multiple accounts for a single user.
-- **Transaction Handling:** Track and manage transactions.
-- **Deposit and Withdrawal:** Perform deposit and withdrawal operations.
-- **Balance Inquiry:** Check account balances.
-- **Transaction History:** View the history of all transactions.
+ATM Simulation is a console application implemented in Java. It allows users to authorize, create accounts, deposit and withdraw funds, transfer money between accounts, and view transaction history. The program provides basic functionality to manage bank accounts through a text-based menu.
 
 ## Project Structure
 
