@@ -11,17 +11,5 @@ ATM Simulation is a console application implemented in Java. It allows users to 
 - **`Transaction` class:** Records transaction details.
 - **`LoginAlreadyExistsException` class:** Handles errors for duplicate user logins.
 
-## Installation
-
-To use this project, you need to have Java Development Kit (JDK) installed. You can compile and run the program using the following commands:
-
-```bash
-# Compile the program
-javac -d bin src/ivangka/core/*.java src/ivangka/exceptions/*.java
-
-# Run the program
-java -cp bin ivangka.core.ATM
-```
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
