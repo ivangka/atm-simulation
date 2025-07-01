@@ -4,7 +4,7 @@ ATM Simulation is a console application implemented in Java. The program provide
 
 ## Project Structure
 
-`ATM`, `Bank`, `User`, `Account`, `Transaction`.
+`ATM`, `Bank`, `User`, `Account`, `Transaction`
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
