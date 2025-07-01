@@ -1,6 +1,6 @@
-package ivangka.core;
+package ivangka.main;
 
-import ivangka.exceptions.LoginAlreadyExistsException;
+import ivangka.exception.LoginAlreadyExistsException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,13 +16,10 @@ public class Bank {
     private ArrayList<Account> accounts;
 
     public Bank(String name, String algorithm) {
-
-        // inits
         this.name = name;
         this.algorithm = algorithm;
         this.users = new ArrayList<>();
         this.accounts = new ArrayList<>();
-
     }
 
     public User createNewUser(String firstName, String lastName, String login, String pin) {
@@ -30,18 +27,15 @@ public class Bank {
     }
 
     public String generateNewUserUUID(User user) {
-
         // generate unique UUID
         String uuid;
         do {
             uuid = UUID.randomUUID().toString().replace("-", "");
         } while (this.users.contains(user));
-
         return uuid;
     }
 
     public long generateNewAccountID() {
-
         Random rand = new Random(47);
         boolean unique;
         long id;
@@ -57,12 +51,10 @@ public class Bank {
                 }
             }
         } while (!unique);
-
         return id;
     }
 
     public void checkLoginExists(String login) throws LoginAlreadyExistsException {
-
         // throw the exception if a user with the login already exists bank
         for (User u : users) {
             if (u.getLogin().equals(login)) {
@@ -70,11 +62,9 @@ public class Bank {
                         "Please choose another one.", login));
             }
         }
-
     }
 
     public User authorization(String login, String pin) {
-
         // search for a user with the login
         User user = null;
         for (User u : users) {
@@ -92,12 +82,10 @@ public class Bank {
         if (MessageDigest.isEqual(user.getPinHash(), pinHash)) {
             return user;
         }
-
         return null;
     }
 
     public byte[] generateHash(String message, String algorithm) {
-
         byte[] hash = null;
         try {
             MessageDigest md = MessageDigest.getInstance(algorithm);
@@ -106,7 +94,6 @@ public class Bank {
             e.printStackTrace();
             System.exit(1);
         }
-
         return hash;
     }
 

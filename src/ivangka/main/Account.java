@@ -1,4 +1,4 @@
-package ivangka.core;
+package ivangka.main;
 
 public class Account {
 
@@ -9,8 +9,6 @@ public class Account {
     private double balance;
 
     public Account(String name, User holder, Bank bank) {
-
-        // inits
         this.name = name;
         this.holder = holder;
         this.bank = bank;
@@ -19,7 +17,6 @@ public class Account {
 
         holder.addAccount(this);
         bank.addAccount(this);
-
     }
 
     public void increaseBalance(double amount) {

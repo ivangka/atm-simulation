@@ -1,4 +1,4 @@
-package ivangka.core;
+package ivangka.main;
 
 import java.util.Date;
 
@@ -9,12 +9,9 @@ public class Transaction {
     final private Date timestamp;
 
     public Transaction(double amount, String memo) {
-
-        // inits
         this.amount = amount;
         this.memo = memo;
         this.timestamp = new Date();
-
     }
 
     public double getAmount() {

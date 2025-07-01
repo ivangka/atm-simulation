@@ -1,4 +1,4 @@
-package ivangka.core;
+package ivangka.main;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -8,10 +8,7 @@ public class ATM {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         sc.useLocale(Locale.US);
-
-        // inits
         Bank bank = new Bank("Digital Native Bank", "MD5");
         User user = bank.createNewUser("John", "Smith", "john-smith", "0000");
         user.createNewAccount("Saving account");
@@ -21,17 +18,13 @@ public class ATM {
             authorizedUser = authorization(bank, sc);
             userMenu(bank, authorizedUser, sc);
         }
-
     }
 
     public static User authorization(Bank bank, Scanner sc) {
-
         String login;
         String pin;
         User authorizedUser;
-
         do {
-
             System.out.print("\nEnter your login: ");
             login = sc.nextLine();
             System.out.print("Enter your pin: ");
@@ -39,12 +32,10 @@ public class ATM {
 
             // try authorization
             authorizedUser = bank.authorization(login, pin);
-
             // if failed to log in
             if (authorizedUser == null) {
                 System.out.println("\nInvalid login or pin. Try again.");
             }
-
         } while (authorizedUser == null);
 
         // when managed to log in
@@ -52,15 +43,12 @@ public class ATM {
     }
 
     public static void userMenu(Bank bank, User user, Scanner sc) {
-
         System.out.printf("\n\n\nWelcome to %s, %s.", bank.getName(), user.getFirstName());
-
         // show all accounts of the user
         user.showAccountsInfo();
 
         int choice;
         while (true) {
-
             System.out.println("\nWhat would you like to do?");
 
             System.out.println("  1) Deposit");
@@ -74,7 +62,6 @@ public class ATM {
             System.out.println();
 
             switch (choice) {
-
                 case 1:
                     deposit(user);
                     break;
@@ -93,17 +80,12 @@ public class ATM {
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.\n");
-
             }
-
             user.showAccountsInfo();
-
         }
-
     }
 
     public static void deposit(User user) {
-
         // select the account to deposit to
         int inAccountNumber;
         do {
@@ -113,7 +95,6 @@ public class ATM {
                 System.out.println("\nInvalid choice. Try again.\n");
             }
         } while (inAccountNumber < 0 || inAccountNumber > user.getAccounts().size());
-
         Account inAccount = user.getAccounts().get(inAccountNumber - 1);
 
         // select amount
@@ -128,13 +109,10 @@ public class ATM {
 
         inAccount.increaseBalance(amount);
         user.addTransaction(new Transaction(amount, "Deposit to \"" + inAccount.getName() + "\""));
-
         System.out.println("\nDeposit completed successfully.");
-
     }
 
     public static void withdraw(User user) {
-
         // if total balance of user equals 0
         if (user.getTotalBalance() == 0) {
             System.out.println("You have no funds in any account. Make a deposit.");
@@ -153,7 +131,6 @@ public class ATM {
             }
         } while (fromAccountNumber < 0 || fromAccountNumber > user.getAccounts().size() ||
                 user.getAccounts().get(fromAccountNumber - 1).getBalance() == 0);
-
         Account fromAccount = user.getAccounts().get(fromAccountNumber - 1);
 
         // select amount
@@ -170,19 +147,16 @@ public class ATM {
 
         fromAccount.reduceBalance(amount);
         user.addTransaction(new Transaction(amount, "Withdraw from \"" + fromAccount.getName() + "\""));
-
         System.out.println("\nWithdraw completed successfully.");
-
     }
 
     public static void transfer(User user) {
-
         // if total balance of user equals 0
         if (user.getTotalBalance() == 0) {
             System.out.println("You have no funds in any account. Make a deposit.");
             return;
         }
-
+        // if user accounts < 2
         if (user.getAccounts().size() < 2) {
             System.out.println("Transfer is not possible.");
             System.out.println("You must have at least two accounts to complete a transaction.");
@@ -201,7 +175,6 @@ public class ATM {
             }
         } while (fromAccountNumber < 0 || fromAccountNumber > user.getAccounts().size() ||
                 user.getAccounts().get(fromAccountNumber - 1).getBalance() == 0);
-
         Account fromAccount = user.getAccounts().get(fromAccountNumber - 1);
 
         // select the account to transfer to
@@ -213,7 +186,6 @@ public class ATM {
                 System.out.println("\nInvalid choice. Try again.\n");
             }
         } while (inAccountNumber < 0 || inAccountNumber > user.getAccounts().size());
-
         Account inAccount = user.getAccounts().get(inAccountNumber - 1);
 
         // select amount
@@ -234,7 +206,6 @@ public class ATM {
                 + "\" to \"" + inAccount.getName() + "\""));
 
         System.out.println("\nTransfer completed successfully.");
-
     }
 
 }

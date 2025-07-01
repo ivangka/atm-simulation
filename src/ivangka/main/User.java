@@ -1,6 +1,6 @@
-package ivangka.core;
+package ivangka.main;
 
-import ivangka.exceptions.LoginAlreadyExistsException;
+import ivangka.exception.LoginAlreadyExistsException;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,7 +18,6 @@ public class User {
     private double totalBalance;
 
     public User(String firstName, String lastName, Bank bank, String login, String pin) {
-
         // checking if an account with the same login exists in the bank
         try {
             bank.checkLoginExists(login);
@@ -27,7 +26,6 @@ public class User {
             System.exit(1);
         }
 
-        // inits
         this.firstName = firstName;
         this.lastName = lastName;
         this.bank = bank;
@@ -38,14 +36,11 @@ public class User {
 
         // generate hash
         this.pinHash = bank.generateHash(pin, "MD5");
-
         // generate UUID for the user
         this.uuid = bank.generateNewUserUUID(this);
 
         bank.addUser(this);
-
         new Account("Master account", this, bank);
-
     }
 
     public Account createNewAccount(String name) {
@@ -57,13 +52,11 @@ public class User {
     }
 
     public void showAccountsInfo() {
-
         System.out.println("\n\nYour accounts:");
         for (Account a : accounts) {
             System.out.printf("  %d) %d : %s : $%.02f\n", accounts.indexOf(a) + 1,
                     a.getID(), a.getName(), a.getBalance());
         }
-
     }
 
     public void addTransaction(Transaction transaction) {
@@ -71,17 +64,14 @@ public class User {
     }
 
     public void showTransactionHistory() {
-
         if (transactions.isEmpty()) {
             System.out.println("You have not made any transactions.");
             return;
         }
-
         System.out.println("Transaction history:");
         for (int i = transactions.size() - 1; i >= 0; i--) {
             System.out.println(transactions.get(i));
         }
-
     }
 
     public void increaseTotalBalance(double amount) {
@@ -94,11 +84,9 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-
         return Objects.equals(uuid, user.uuid);
     }
 
